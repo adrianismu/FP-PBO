@@ -13,17 +13,17 @@ public class GameLauncher extends JFrame {
 	private  BufferedImage img1;
 	public GameLauncher()
 	{
-		try{
-			//logo app
-			URL icon=this.getClass().getResource("/res/car1.png");
-			img1=ImageIO.read(icon);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
+		// try{
+		// 	//logo app
+		// 	URL icon=this.getClass().getResource("/res/car1.png");
+		// 	img1=ImageIO.read(icon);
+		// 	}
+		// 	catch(Exception e)
+		// 	{
+		// 		e.printStackTrace();
+		// 	}
 		
-		JFrame f=new JFrame("Balapan Fun Race");
+		JFrame f=new JFrame("Vehicle RUSH");
 //		f.setUndecorated(true);
 //		f.setExtendedState(f.MAXIMIZED_BOTH);
 		f.setSize(720, 690);
