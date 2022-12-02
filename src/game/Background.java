@@ -16,9 +16,9 @@ public class Background {
 	
 	public Background(){
 		roadX=200;
-	  //  roadY=1640;
-		// backRoadX = 100;
-		// backRoadY= -1000;
+	    roadY=1640;
+		 backRoadX = 100;
+		 backRoadY= -1000;
 	    
 	    road = ImageLoader.loadImage("/res/(long)portraitRoadBG.png");
 	    backRoad = ImageLoader.loadImage("/res/(long)background.png");
@@ -71,9 +71,7 @@ public class Background {
 		 update();
 	 }
 
-	 
-	 
-	 
+
 	 public static int getLeftRoadBound() {
 		 return LEFT_ROAD_BOUND;
 	 }

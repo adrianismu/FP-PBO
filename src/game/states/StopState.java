@@ -54,15 +54,15 @@ public class StopState extends GameState {
 		g.drawString("Highest Score Ever : "+score.getHighestScore(), 10, 25);
 		
 		g.setFont(titleFont);
-		g.setColor(Color.white);
+		g.setColor(Color.BLACK);
 		g.drawString("GAME OVER", GamePanel.WIDTH/5 + 10, 200);
 		
 		g.setFont(f);
 		g.setColor(Color.BLACK);
 		g.drawString("SCORE "+score.finalScore, 270, 300);
 		
-		g.setFont(new Font("Bodoni MT",Font.ITALIC,25));
-		g.setColor(Color.white);
+		g.setFont(new Font("SERIF",Font.BOLD,25));
+		g.setColor(Color.black);
 		g.drawString("Press Space to Play Again", GamePanel.WIDTH/3 - 15, 480);
 
 	}
