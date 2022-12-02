@@ -19,17 +19,14 @@ public class MenuState extends GameState {
 	// private String[] options = {
 	// 	"Start",
 	// 	"Quit"
-	// };
+	
 	
 	private String info = "ENTER TO PLAY";
 	private Font fontInfo;
 	
 	public MenuState(GameStateManager gsm) {
-		
 		this.gsm = gsm;
-		
 		init();
-
 	}
 
 	@Override
