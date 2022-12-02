@@ -2,21 +2,14 @@ package game.states;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import game.GamePanel;
 import game.tools.ImageLoader;
@@ -71,7 +64,6 @@ public class MenuState extends GameState {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

@@ -2,13 +2,12 @@ package game.entities;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
 import game.tools.ImageLoader;
 
 public abstract class Car {
 	
 	protected double x;
-	protected double y; //posisi mulai pemain
+	protected double y; 
 	protected double dx, dy;
 	
 	protected int width;

@@ -3,7 +3,6 @@ package game.states;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import game.Background;
@@ -36,15 +35,10 @@ public class StopState extends GameState {
 		titleFont = new Font("Broadway",Font.BOLD,60);
 		
 		score.setHighestScore(score.finalScore);
-		score.setHighestCoinScore(score.finalCoinScore);
-
-		score.deltaCoinScore=0;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 
 	}
 
@@ -58,7 +52,6 @@ public class StopState extends GameState {
 		g.setFont(highestScoreFont);
 		g.setColor(Color.BLACK);
 		g.drawString("Highest Score Ever : "+score.getHighestScore(), 10, 25);
-		g.drawString("Highest Coin Count Ever : "+ score.getHighestCoinScore(), 10, 50);
 		
 		g.setFont(titleFont);
 		g.setColor(Color.white);
@@ -67,7 +60,6 @@ public class StopState extends GameState {
 		g.setFont(f);
 		g.setColor(Color.BLACK);
 		g.drawString("SCORE "+score.finalScore, 270, 300);
-		g.drawString("COIN COUNT "+score.finalCoinScore, 245, 340);
 		
 		g.setFont(new Font("Bodoni MT",Font.ITALIC,25));
 		g.setColor(Color.white);

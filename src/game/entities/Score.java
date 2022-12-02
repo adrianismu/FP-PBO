@@ -13,21 +13,17 @@ public class Score {
 	public int currentScore;
 	public int checkScore;
 	public int deltaScore;
-	public int deltaCoinScore;
-	public int currentCoinScore;
-	public int finalScore,finalCoinScore;
+	public int finalScore;
+
+	private int highestScore;
 	
-	private int highestScore, highestCoinScore;
+	URL pathHighestScore;
 	
-	URL pathHighestScore, pathHighestCoinScore;
-	
-	File highestScoreFile, highestCoinScoreFile;
+	File highestScoreFile;
 	
 	public Score() {
 		
-		pathHighestScore = getClass().getResource("/res/highestScore.txt");
-		pathHighestCoinScore = getClass().getResource("/res/highestCoinScore.txt");
-				
+		pathHighestScore = getClass().getResource("/res/highestScore.txt");		
 		init();
 
 	}
@@ -45,17 +41,7 @@ public class Score {
 		      e.printStackTrace();
 		}
 		
-		try {
-		      highestCoinScoreFile = new File(pathHighestCoinScore.getPath());
-		      Scanner myReader = new Scanner(highestCoinScoreFile);
-		      while (myReader.hasNextInt()) {
-		        highestCoinScore = myReader.nextInt();
-		      }
-		      myReader.close();
-		} catch (FileNotFoundException e) {
-		      e.printStackTrace();
-		}
-
+		
 	}
 
 	
@@ -90,44 +76,9 @@ public class Score {
 		
 	}
 	
-	public void setHighestCoinScore(int coinCount) {
-		
-		highestCoinScore = Math.max(highestCoinScore, coinCount);
-		
-		// read file highest coin count and compare
-		try {
-		      Scanner myReader = new Scanner(highestCoinScoreFile);
-		      
-		      int highestCoinScoreTemp = 0;
-		      while (myReader.hasNextInt()) {
-		    	  highestCoinScoreTemp = myReader.nextInt();
-		      }
-		      
-		      highestCoinScore = Math.max(highestCoinScore, highestCoinScoreTemp);
-		      
-		      myReader.close();
-		} catch (FileNotFoundException e) {
-		      e.printStackTrace();
-		}
-		
-		// write highest score to file
-		try {
-		      FileWriter myWriter = new FileWriter("src/res/highestCoinScore.txt");
-		      myWriter.write(highestCoinScore + "");
-		      myWriter.close();
-		} catch (IOException e) {
-	      e.printStackTrace();
-	    }
-		
-	}
-	
 	
 	public int getHighestScore() {
 		return highestScore;
-	}
-
-	public int getHighestCoinScore() {
-		return highestCoinScore;
 	}
 	
 

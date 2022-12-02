@@ -1,11 +1,8 @@
 package game.states;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 import game.entities.Score;
-import game.tools.ImageLoader;
+
 
 public class GameStateManager {
 	
@@ -47,7 +44,6 @@ public class GameStateManager {
 		currentState = state;
 		this.score = score;
 		loadState(currentState);
-		//gameStates[currentState].init();
 	}
 	
 	public void update() {

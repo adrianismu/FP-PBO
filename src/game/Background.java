@@ -2,40 +2,29 @@ package game;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
 import game.tools.ImageLoader;
-
 
 public class Background {
 	
 	private static final int LEFT_ROAD_BOUND = 260;
 	private static final int RIGHT_ROAD_BOUND = 482;
 	
-
-	private	BufferedImage road, backRoad;
-	private int roadX, roadY; 
+	private	BufferedImage road, backRoad, backroad2;
+	private int roadX, roadY, backRoadX, backRoadY; 
 	private int dy;
 
 	
 	public Background(){
 		roadX=200;
-	    roadY=-700;
+	  //  roadY=1640;
+		// backRoadX = 100;
+		// backRoadY= -1000;
 	    
 	    road = ImageLoader.loadImage("/res/(long)portraitRoadBG.png");
 	    backRoad = ImageLoader.loadImage("/res/(long)background.png");
+		backroad2 = ImageLoader.loadImage("/res/(long)backgroundw.png");
 	}
 
-	
-//	 public int getWidth(){
-//		 return road.getWidth();
-//	 }
-//	 
-//	 public int getHeight(){
-//		 return road.getHeight();
-//	 }
 	 
 	 public int getRoadX(){
 		 return roadX;
@@ -44,6 +33,13 @@ public class Background {
 	 public int getRoadY(){
 		 return roadY;
 	 }
+	 public int geBackRoadX(){
+		return backRoadX;
+	}
+	
+	public int getBackRoadY(){
+		return backRoadY;
+	}
 	 
 	 public Image getRoad() {	
 		return road;
@@ -52,18 +48,30 @@ public class Background {
 	 public Image getBackRoad(){
 		return backRoad;
 	 }
+
+	 public Image getBackRoad2(){
+		return backroad2;
+	 }
+	 
 	 
 	 public void update(){
 	     roadY+=dy;
 	     if(roadY>0){
-	    	 roadY=-700;
-	     }
+	    	 roadY=-3340;
+			 backRoadY+=dy;
+			 backRoadY+=dy;
+
+			
+	}
+
 	 }
 	 
 	 public void setSpeed(int dy){
 		 this.dy = dy;
 		 update();
 	 }
+
+	 
 	 
 	 
 	 public static int getLeftRoadBound() {

@@ -2,17 +2,11 @@ package game;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
-
 import game.states.GameStateManager;
-import game.states.MenuState;
-import game.tools.ImageLoader;
+
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	

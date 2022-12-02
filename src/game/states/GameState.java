@@ -1,10 +1,6 @@
 package game.states;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JPanel;
-
 import game.entities.Score;
 
 public abstract class GameState {
