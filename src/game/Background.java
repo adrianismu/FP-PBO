@@ -8,6 +8,8 @@ public class Background {
 	
 	private static final int LEFT_ROAD_BOUND = 260;
 	private static final int RIGHT_ROAD_BOUND = 482;
+	private static final int TOP_ROAD_BOUND = 0;
+	private static final int DOWN_ROAD_BOUND = 590;
 	
 	private	BufferedImage road, backRoad, backroad2;
 	private int roadX, roadY, backRoadX, backRoadY; 
@@ -76,9 +78,17 @@ public class Background {
 		 return LEFT_ROAD_BOUND;
 	 }
 
-
 	 public static int getRightRoadBound() {
 		 return RIGHT_ROAD_BOUND;
 	 }
+
+	 public static int getTopRoadBound() {
+		return TOP_ROAD_BOUND;
+	}
+
+
+	public static int getDownRoadBound() {
+		return DOWN_ROAD_BOUND;
+	}
 
 }

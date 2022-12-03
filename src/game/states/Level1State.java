@@ -59,40 +59,51 @@ public class Level1State extends GameState {
 		if(player.getX() >= background.getRightRoadBound())
 			player.setX( background.getRightRoadBound() );
 		
-
 		if(player.getX() <= background.getLeftRoadBound())
 			player.setX( background.getLeftRoadBound() );;
+
+		 if(player.getY() <= background.getTopRoadBound())
+			player.setY( background.getTopRoadBound() );
+		
+		if(player.getY() >= background.getDownRoadBound())
+		 	player.setY( background.getDownRoadBound() );;
 		
 			
 		score.currentScore += score.deltaScore;
 		score.checkScore = score.currentScore;
-		obstacleone.setSpeed(2);
-		obstacletwo.setSpeed(2);
-		obstaclethree.setSpeed(2);
+		if(score.checkScore>0){
+			background.setSpeed(2);
+			obstacleone.setSpeed(2);
+			obstacletwo.setSpeed(2);
+			obstaclethree.setSpeed(2);
+			
+		}
+
 
 		if(score.checkScore>3500){
-			background.setSpeed(7);
-			obstacleone.setSpeed(7);
-			obstacletwo.setSpeed(7);
-			obstaclethree.setSpeed(7);
+			background.setSpeed(3);
+			obstacleone.setSpeed(3+2);
+			obstacletwo.setSpeed(3+2);
+			obstaclethree.setSpeed(3+2);
 			
 		}
 		
 		if(score.checkScore>5000){
-			background.setSpeed(8);
+			background.setSpeed(5);
 			score.deltaScore=10;
-			obstacleone.setSpeed(8);
-			obstacletwo.setSpeed(7);
-			obstaclethree.setSpeed(7);
+			obstacleone.setSpeed(5 + 5);
+			obstacletwo.setSpeed(5 + 5 );
+			obstaclethree.setSpeed(5 + 5);
 		}
 		
-		if(score.checkScore>7000){
-			background.setSpeed(9);
+		if(score.checkScore>15000){
+			background.setSpeed(6);
+			obstacleone.setSpeed(6 + 10);
+			obstacletwo.setSpeed(6 + 10);
+			obstaclethree.setSpeed(6 + 10);
 			score.deltaScore=25;
 		}
-		else {
-			background.setSpeed(currentSpeed);
-		}
+		
 		
 	}
 
@@ -129,7 +140,7 @@ public class Level1State extends GameState {
 
 	public void checkCollision(){
 		score.deltaScore = 4;
-		currentSpeed = 2;
+		currentSpeed = 0;
 		
 		Rectangle op1 = obstacleone.getRectangle();
 		Rectangle op2 = obstacletwo.getRectangle();
