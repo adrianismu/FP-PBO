@@ -5,7 +5,8 @@ public class PlayerCar extends Car {
 	
 	public PlayerCar() {
 		
-		super("/res/car1.png");
+		super("/res/car1.gif");
+		
 		this.x = 300;
 		this.y = 535; 
 	}

@@ -45,9 +45,9 @@ public class StopState extends GameState {
 	@Override
 	public void draw(Graphics g) {
 		
-		for(int i=0;i<10;i++) {
-			g.drawImage(background.getBackRoad(),i,0,null);
-		}
+		// for(int i=0;i<10;i++) {
+		// 	g.drawImage(background.image),i,0,null);
+		// }
 		
 		g.setFont(highestScoreFont);
 		g.setColor(Color.BLACK);

@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+
 public class GameLauncher extends JFrame {
 	private  BufferedImage img1;
 	public GameLauncher()

@@ -15,6 +15,8 @@ private static String pathImage = "/res/obstacle1.png";
 		y+=dy;
 		if(y >= 1800)
 			generateRandomPosition();
+		
+			
 	}
 	
 }

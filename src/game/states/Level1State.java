@@ -11,6 +11,7 @@ import game.entities.Score;
 import game.entities.Obstacle1;
 import game.entities.Obstacle2;
 import game.entities.Obstacle3;
+import game.entities.Obstacle4;
 import java.io.IOException;
 
 public class Level1State extends GameState {
@@ -21,6 +22,7 @@ public class Level1State extends GameState {
 	Obstacle1 obstacleone;
 	Obstacle2 obstacletwo;
 	Obstacle3 obstaclethree;
+	Obstacle4 obstaclefour;
 	//Obstacle1 obstacleone;
 
 	
@@ -31,6 +33,7 @@ public class Level1State extends GameState {
 		obstacleone = new Obstacle1();
 		obstacletwo = new Obstacle2();
 		obstaclethree = new Obstacle3();
+		obstaclefour = new Obstacle4();
 		
 		background = new Background();
 		score = new Score();	
@@ -43,10 +46,12 @@ public class Level1State extends GameState {
 	}
 
 	public void action() {
-		update();
+
 		obstacleone.move();
 		obstacletwo.move();
 		obstaclethree.move();
+		obstaclefour.move();
+		update();
 		checkCollision();
 	}
 	
@@ -76,6 +81,7 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(2);
 			obstacletwo.setSpeed(2);
 			obstaclethree.setSpeed(2);
+			obstaclefour.setSpeed(2);
 			
 		}
 
@@ -85,6 +91,7 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(3+2);
 			obstacletwo.setSpeed(3+2);
 			obstaclethree.setSpeed(3+2);
+			obstaclefour.setSpeed(3+2);
 			
 		}
 		
@@ -94,6 +101,7 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(5 + 5);
 			obstacletwo.setSpeed(5 + 5 );
 			obstaclethree.setSpeed(5 + 5);
+			obstaclefour.setSpeed(5 + 5);
 		}
 		
 		if(score.checkScore>15000){
@@ -115,24 +123,27 @@ public class Level1State extends GameState {
 			}
 			if(score.currentScore >5000){
 			g.drawImage(background.getBackRoad(),0, background.getRoadY(),null);
+			g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);
 			}
-			if(score.currentScore >34000){
-			g.drawImage(background.getBackRoad2(),0, background.getRoadY(),null);
+			if(score.currentScore >15000){
+			g.drawImage(background.getBackRoad3(),0, background.getRoadY(),null);
 			}
 
+
+		
+		g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
+		
 		g.setColor(new Color(240, 208, 83));
 		Font f=new Font("MONOSPACED",Font.BOLD,20);
 		g.setFont(f);
-		g.drawString("SCORE : " +score.currentScore, 30, 500);
 		
-		g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
-
+		g.drawString("SCORE : " +score.currentScore, 30, 500);
 		g.drawImage(obstacleone.getImage(), (int)obstacleone.getX(), (int)obstacleone.getY(), null);
 		g.drawImage(obstacletwo.getImage(), (int)obstacletwo.getX(), (int)obstacletwo.getY(), null);
+		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);
 		g.drawImage(obstaclethree.getImage(), (int)obstaclethree.getX(), (int)obstaclethree.getY(), null);
-
 		g.drawImage(player.getImage(), (int) player.getX(),(int) player.getY(), null);
-		
+
 		
 		score.finalScore = score.currentScore;
 
@@ -145,14 +156,17 @@ public class Level1State extends GameState {
 		Rectangle op1 = obstacleone.getRectangle();
 		Rectangle op2 = obstacletwo.getRectangle();
 		Rectangle op3 = obstaclethree.getRectangle();
+		Rectangle op4 = obstaclefour.getRectangle();
 		
 		
 		Rectangle p = player.getRectangle();
-		if(op1.intersects(p)|op2.intersects(p)|op3.intersects(p)){
+		if(op1.intersects(p)|op2.intersects(p)|op3.intersects(p)|op4.intersects(p)){
+		
 			gsm.setState(GameStateManager.STOPSTATE, score);
 		}
 		
 	}
+
 	
 	@Override
 	public void keyPressed(int key) {

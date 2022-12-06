@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import game.tools.ImageLoader;
 
+
 public abstract class Car {
 	
 	protected double x;
@@ -17,7 +18,6 @@ public abstract class Car {
 	
 	public Car(String pathImage) {
 		image = ImageLoader.loadImage(pathImage);
-		
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 	}
