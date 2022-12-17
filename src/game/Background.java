@@ -23,6 +23,7 @@ public class Background {
 		 backRoadY= -1000;
 	    
 	    road = ImageLoader.loadImage("/res/(long)portraitRoadBG.png");
+		road2 = ImageLoader.loadImage("/res/(long)portraitRoadBGa.png");
 	    backRoad = ImageLoader.loadImage("/res/(long)background.png");
 		backroad2 = ImageLoader.loadImage("/res/(long)backgrounda.png");
 		backroad3 = ImageLoader.loadImage("/res/(long)backgroundb.png");
