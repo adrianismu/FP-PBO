@@ -3,7 +3,7 @@ package game.entities;
 public class Obstacle4 extends Obstacle {
     
 
-private static String pathImage = "/res/obstacle4R.png";
+private static String pathImage = "/res/fireball.png";
 	
 	public Obstacle4() {
 		super(pathImage);
