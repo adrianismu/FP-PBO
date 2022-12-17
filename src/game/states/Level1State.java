@@ -12,6 +12,13 @@ import game.entities.Obstacle1;
 import game.entities.Obstacle2;
 import game.entities.Obstacle3;
 import game.entities.Obstacle4;
+
+import game.tools.GameSound;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+
 import java.io.IOException;
 
 public class Level1State extends GameState {
@@ -24,6 +31,11 @@ public class Level1State extends GameState {
 	Obstacle3 obstaclethree;
 	Obstacle4 obstaclefour;
 	//Obstacle1 obstacleone;
+	GameSound carSound1;
+	GameSound carSound2;
+	GameSound carSound3;
+	GameSound carSound4;
+	GameSound crash;
 
 	
 	public Level1State(GameStateManager gsm) {
@@ -37,6 +49,29 @@ public class Level1State extends GameState {
 		
 		background = new Background();
 		score = new Score();	
+
+
+		try {
+			// carSound1 = new GameSound("/res/carSound1.wav");
+			// carSound2 = new GameSound("/res/carSound2.wav");
+			// carSound3 = new GameSound("/res/carSound3.wav");
+			carSound4 = new GameSound("/res/carSound4.wav");
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		carSound4.play();
+		carSound4.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
+
+		try {
+			crash = new GameSound("/res/crash.wav");
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | IOException
+				| javax.sound.sampled.LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -46,7 +81,6 @@ public class Level1State extends GameState {
 	}
 
 	public void action() {
-
 		obstacleone.move();
 		obstacletwo.move();
 		obstaclethree.move();
@@ -77,12 +111,12 @@ public class Level1State extends GameState {
 		score.currentScore += score.deltaScore;
 		score.checkScore = score.currentScore;
 		if(score.checkScore>0){
+			
 			background.setSpeed(2);
 			obstacleone.setSpeed(2);
 			obstacletwo.setSpeed(2);
 			obstaclethree.setSpeed(2);
-			obstaclefour.setSpeed(2);
-			
+
 		}
 
 
@@ -91,8 +125,7 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(3+2);
 			obstacletwo.setSpeed(3+2);
 			obstaclethree.setSpeed(3+2);
-			obstaclefour.setSpeed(3+2);
-			
+
 		}
 		
 		if(score.checkScore>5000){
@@ -101,7 +134,8 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(5 + 5);
 			obstacletwo.setSpeed(5 + 5 );
 			obstaclethree.setSpeed(5 + 5);
-			obstaclefour.setSpeed(5 + 5);
+			obstaclefour.setSpeed(5 + 10);
+	
 		}
 		
 		if(score.checkScore>15000){
@@ -109,6 +143,7 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(6 + 10);
 			obstacletwo.setSpeed(6 + 10);
 			obstaclethree.setSpeed(6 + 10);
+			obstaclefour.setSpeed(5 + 100);
 			score.deltaScore=25;
 		}
 		
@@ -120,29 +155,26 @@ public class Level1State extends GameState {
 			//g.drawImage(background.getBackRoad(),0, background.getRoadY(),null);
 			if(score.currentScore >0){
 			g.drawImage(background.getBackRoad2(),0, background.getRoadY(),null);
+			g.drawImage(background.getRoadA(), background.getRoadX(), background.getRoadY(), null);
 			}
 			if(score.currentScore >5000){
 			g.drawImage(background.getBackRoad(),0, background.getRoadY(),null);
-			g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);
+			g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
 			}
 			if(score.currentScore >15000){
 			g.drawImage(background.getBackRoad3(),0, background.getRoadY(),null);
+			g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
 			}
-
-
-		
-		g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
 		
 		g.setColor(new Color(240, 208, 83));
 		Font f=new Font("MONOSPACED",Font.BOLD,20);
 		g.setFont(f);
-		
 		g.drawString("SCORE : " +score.currentScore, 30, 500);
 		g.drawImage(obstacleone.getImage(), (int)obstacleone.getX(), (int)obstacleone.getY(), null);
 		g.drawImage(obstacletwo.getImage(), (int)obstacletwo.getX(), (int)obstacletwo.getY(), null);
 		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);
 		g.drawImage(obstaclethree.getImage(), (int)obstaclethree.getX(), (int)obstaclethree.getY(), null);
-		g.drawImage(player.getImage(), (int) player.getX(),(int) player.getY(), null);
+		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);g.drawImage(player.getImage(), (int) player.getX(),(int) player.getY(), null);
 
 		
 		score.finalScore = score.currentScore;
@@ -160,9 +192,15 @@ public class Level1State extends GameState {
 		
 		
 		Rectangle p = player.getRectangle();
-		if(op1.intersects(p)|op2.intersects(p)|op3.intersects(p)|op4.intersects(p)){
-		
+		if(op1.intersects(p) || op2.intersects(p)||op3.intersects(p)||op4.intersects(p)){
+			try {
+				carSound4.stop();
+				crash.play();
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+				e.printStackTrace();
+			}
 			gsm.setState(GameStateManager.STOPSTATE, score);
+
 		}
 		
 	}
