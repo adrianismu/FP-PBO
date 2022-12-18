@@ -15,9 +15,12 @@ public abstract class Car {
 	protected int height;
 	
 	protected BufferedImage image;
+	protected BufferedImage imageCrash;
 	
 	public Car(String pathImage) {
 		image = ImageLoader.loadImage(pathImage);
+		imageCrash = ImageLoader.loadImage(pathImage);
+
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 	}
@@ -28,6 +31,10 @@ public abstract class Car {
 	
 	public BufferedImage getImage(){
 		return image;
+	}
+
+	public BufferedImage getImageCrash(){
+		return imageCrash;
 	}
 	
 	public double getX(){

@@ -21,7 +21,7 @@ public class MenuState extends GameState {
 	// 	"Quit"
 	
 	
-	private String info = "ENTER TO PLAY";
+	private String info = "PRESS ENTER TO PLAY";
 	private Font fontInfo;
 	
 	public MenuState(GameStateManager gsm) {
@@ -45,7 +45,8 @@ public class MenuState extends GameState {
 		g.drawImage(frontScreen, 0, 0, null);
 		g.setColor(Color.white);
 		g.setFont(fontInfo);
-		g.drawString(info, GamePanel.WIDTH / 4 + 130, GamePanel.HEIGHT/2 );
+		fontInfo = new Font(null, Font.PLAIN, 50);
+		g.drawString(info, GamePanel.WIDTH / 2 -300, GamePanel.HEIGHT/2 + 150 );
 		
 
 	}
