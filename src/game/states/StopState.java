@@ -30,9 +30,9 @@ public class StopState extends GameState {
 
 	@Override
 	public void init() {
-		highestScoreFont = new Font("Bodoni MT",Font.BOLD,25);
-		f = new Font("Broadway",Font.BOLD,28);
-		titleFont = new Font("Broadway",Font.BOLD,60);
+		highestScoreFont = new Font("HelveticaNeue",Font.BOLD,25);
+		f = new Font("HelveticaNeue",Font.BOLD,50);
+		titleFont = new Font("HelveticaNeue",Font.BOLD,60);
 		
 		score.setHighestScore(score.finalScore);
 	}
@@ -45,24 +45,23 @@ public class StopState extends GameState {
 	@Override
 	public void draw(Graphics g) {
 		
-		for(int i=0;i<10;i++) {
-			g.drawImage(background.getBackRoad(),i,0,null);
-		}
+		g.drawImage(background.getEnd(),0,0,null);
 		
 		g.setFont(highestScoreFont);
-		g.setColor(Color.BLACK);
-		g.drawString("Highest Score Ever : "+score.getHighestScore(), 10, 25);
+		g.setColor(Color.WHITE);
+		g.drawString("Highest Score: "+score.getHighestScore(), 100, 400);
 		
 		g.setFont(titleFont);
-		g.setColor(Color.BLACK);
-		g.drawString("GAME OVER", GamePanel.WIDTH/5 + 10, 200);
+		g.setColor(Color.WHITE);
+		g.drawString("GAME OVER",100 , 200);
 		
 		g.setFont(f);
-		g.setColor(Color.BLACK);
-		g.drawString("SCORE "+score.finalScore, 270, 300);
+		g.setColor(Color.WHITE);
+		g.drawString("SCORE"+score.finalScore  ,100, 300);
+	
 		
-		g.setFont(new Font("SERIF",Font.BOLD,25));
-		g.setColor(Color.black);
+		g.setFont(new Font("HelveticaNeue",Font.PLAIN,25));
+		g.setColor(Color.WHITE);
 		g.drawString("Press Space to Play Again", GamePanel.WIDTH/3 - 15, 480);
 
 	}

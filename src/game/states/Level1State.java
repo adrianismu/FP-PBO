@@ -30,7 +30,7 @@ public class Level1State extends GameState {
 	Obstacle2 obstacletwo;
 	Obstacle3 obstaclethree;
 	Obstacle4 obstaclefour;
-	//Obstacle1 obstacleone;
+	
 	GameSound carSound1;
 	GameSound carSound2;
 	GameSound carSound3;
@@ -173,11 +173,11 @@ public class Level1State extends GameState {
 			g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
 			}
 		
-		g.setColor(new Color(240, 208, 83));
-		Font f=new Font("MONOSPACED",Font.BOLD,20);
+		g.setColor(new Color(255,255,255));
+		Font f=new Font("HelveticaNeue",Font.BOLD,20);
 		g.setFont(f);
-		g.drawString("SCORE :", 30, 500);
-		g.drawString( ""+ score.currentScore, 30, 550);
+		g.drawString("SCORE", 30, 500);
+		g.drawString( ""+ score.currentScore, 30, 520);
 		g.drawImage(obstacleone.getImage(), (int)obstacleone.getX(), (int)obstacleone.getY(), null);
 		g.drawImage(obstacletwo.getImage(), (int)obstacletwo.getX(), (int)obstacletwo.getY(), null);
 		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);

@@ -6,12 +6,12 @@ import game.tools.ImageLoader;
 
 public class Background {
 	
-	private static final int LEFT_ROAD_BOUND = 140;
-	private static final int RIGHT_ROAD_BOUND = 582;
+	private static final int LEFT_ROAD_BOUND = 150;
+	private static final int RIGHT_ROAD_BOUND = 570;
 	private static final int TOP_ROAD_BOUND = 0;
 	private static final int DOWN_ROAD_BOUND = 590;
 	
-	private	BufferedImage road,road2, backRoad, backroad2, backroad3;
+	private	BufferedImage road, road2, backRoad, backroad2, backroad3 , end1;
 	private int roadX, roadY, backRoadX, backRoadY; 
 	private int dy;
 
@@ -27,6 +27,7 @@ public class Background {
 	    backRoad = ImageLoader.loadImage("/res/(long)background.png");
 		backroad2 = ImageLoader.loadImage("/res/(long)backgrounda.png");
 		backroad3 = ImageLoader.loadImage("/res/(long)backgroundb.png");
+		end1 = ImageLoader.loadImage("/res/end.jpg");
 	}
 
 	public int getRoadX() {
@@ -63,6 +64,10 @@ public class Background {
 
 	public Image getBackRoad3() {
 		return backroad3;
+	}
+
+	public Image getEnd() {
+		return end1;
 	}
 
 	public void update() {
