@@ -52,17 +52,26 @@ public class Level1State extends GameState {
 
 
 		try {
-			// carSound1 = new GameSound("/res/carSound1.wav");
-			// carSound2 = new GameSound("/res/carSound2.wav");
-			// carSound3 = new GameSound("/res/carSound3.wav");
+			carSound1 = new GameSound("/res/carSound1.wav");
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			carSound2 = new GameSound("/res/carSound2.wav");
+			carSound3 = new GameSound("/res/carSound3.wav");
 			carSound4 = new GameSound("/res/carSound4.wav");
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		carSound4.play();
-		carSound4.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
+
+
+
+		// carSound4.play();
+		// carSound4.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
 
 		try {
 			crash = new GameSound("/res/crash.wav");
@@ -87,6 +96,9 @@ public class Level1State extends GameState {
 		obstaclefour.move();
 		update();
 		checkCollision();
+		
+
+		
 	}
 	
 	@Override
@@ -116,7 +128,7 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(2);
 			obstacletwo.setSpeed(2);
 			obstaclethree.setSpeed(2);
-
+			
 		}
 
 
@@ -125,10 +137,11 @@ public class Level1State extends GameState {
 			obstacleone.setSpeed(3+2);
 			obstacletwo.setSpeed(3+2);
 			obstaclethree.setSpeed(3+2);
+			
 
 		}
 		
-		if(score.checkScore>5000){
+		if(score.checkScore>6000){
 			background.setSpeed(5);
 			score.deltaScore=10;
 			obstacleone.setSpeed(5 + 5);
@@ -150,13 +163,16 @@ public class Level1State extends GameState {
 		
 	}
 
+
+
 	@Override
 	public void draw(Graphics g) {
 			//g.drawImage(background.getBackRoad(),0, background.getRoadY(),null);
 			if(score.currentScore >0){
 			g.drawImage(background.getBackRoad2(),0, background.getRoadY(),null);
 			g.drawImage(background.getRoadA(), background.getRoadX(), background.getRoadY(), null);
-			}
+			
+		}
 			if(score.currentScore >5000){
 			g.drawImage(background.getBackRoad(),0, background.getRoadY(),null);
 			g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
@@ -176,10 +192,10 @@ public class Level1State extends GameState {
 		g.drawImage(obstaclethree.getImage(), (int)obstaclethree.getX(), (int)obstaclethree.getY(), null);
 		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);g.drawImage(player.getImage(), (int) player.getX(),(int) player.getY(), null);
 
-		
-		score.finalScore = score.currentScore;
 
+		score.finalScore = score.currentScore;
 	}
+	
 
 	public void checkCollision(){
 		score.deltaScore = 4;
@@ -194,14 +210,44 @@ public class Level1State extends GameState {
 		Rectangle p = player.getRectangle();
 		if(op1.intersects(p) || op2.intersects(p)||op3.intersects(p)||op4.intersects(p)){
 			try {
+				carSound2.stop();
+				carSound3.stop();
 				carSound4.stop();
-				crash.play();
+				
+				
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 				e.printStackTrace();
 			}
+			crash.play();
 			gsm.setState(GameStateManager.STOPSTATE, score);
-
+			
 		}
+		if(score.checkScore>6000){
+			carSound3.pause();
+			carSound4.play();
+			carSound4.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
+	
+		}
+
+		if(score.checkScore>3500){
+			carSound2.pause();
+			carSound3.play();
+			carSound3.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
+	
+		}
+
+		if(score.checkScore>1800){
+			carSound1.pause();
+			carSound2.play();
+			carSound2.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
+		}
+
+		if(score.checkScore > 0){
+			carSound1.play();
+			carSound1.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
+	
+		}
+		
 		
 	}
 

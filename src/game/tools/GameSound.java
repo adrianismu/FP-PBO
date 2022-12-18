@@ -41,18 +41,14 @@ public class GameSound {
     	
         //start the clip 
         clip.start(); 
-          
         status = "play"; 
     } 
+
+    
       
     // Method to pause the audio 
     public void pause()  
     { 
-        if (status.equals("paused"))  
-        { 
-            System.out.println("audio is already paused"); 
-            return; 
-        } 
         this.currentFrame =  
         this.clip.getMicrosecondPosition(); 
         clip.stop(); 
