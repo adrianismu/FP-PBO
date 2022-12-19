@@ -112,7 +112,7 @@ public class Score {
 		
 		// write highest score to file
 		try {
-		      FileWriter myWriter = new FileWriter("src/res/.txt");
+		      FileWriter myWriter = new FileWriter("src/res/highestFuel.txt");
 		      myWriter.write(highestFuel + "/res/highestFuel.txt");
 		      myWriter.close();
 		} catch (IOException e) {

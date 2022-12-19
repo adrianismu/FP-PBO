@@ -70,7 +70,7 @@ public class Fuel {
 	
 	public void update(int dy){
 	 y+=dy;
-		if(y>2000){
+		if(y>900){
 			
 			generateRandomPosition();}
 	}
