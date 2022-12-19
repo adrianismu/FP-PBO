@@ -13,16 +13,21 @@ public class Score {
 	public int checkScore;
 	public int deltaScore;
 	public int finalScore;
-
 	private int highestScore;
+
+	public int deltaFuel;
+	public int currentFuel;
+	public int finalFuel;
+	private int highestFuel;
 	
-	URL pathHighestScore;
-	
-	File highestScoreFile;
+	URL pathHighestScore, pathHighestFuel;
+	File highestScoreFile, highestFuelFile;
 	
 	public Score() {
 		
-		pathHighestScore = getClass().getResource("/res/highestScore.txt");		
+		pathHighestScore = getClass().getResource("/res/highestScore.txt");
+		pathHighestFuel = getClass().getResource("/res/highestFuel.txt");
+		
 		init();
 
 	}
@@ -39,6 +44,17 @@ public class Score {
 		} catch (FileNotFoundException e) {
 		      e.printStackTrace();
 		}
+
+		try {
+			highestFuelFile = new File(pathHighestFuel.getPath());
+			Scanner myReader = new Scanner(highestFuelFile);
+			while (myReader.hasNextInt()) {
+				highestFuel = myReader.nextInt();
+			}
+			myReader.close();
+	  } catch (FileNotFoundException e) {
+			e.printStackTrace();
+	  }
 		
 	}
 
@@ -63,10 +79,41 @@ public class Score {
 		      e.printStackTrace();
 		}
 		
-		// write highest score to file
+	
 		try {
 		      FileWriter myWriter = new FileWriter("src/res/highestScore.txt");
 		      myWriter.write(highestScore + "");
+		      myWriter.close();
+		} catch (IOException e) {
+	      e.printStackTrace();
+	    }
+		
+	}
+
+	public void setHighestFuel(int fuelCount) {
+		
+		highestFuel = Math.max(highestFuel, fuelCount);
+		
+		// read file highest coin count and compare
+		try {
+		      Scanner myReader = new Scanner(highestFuelFile);
+		      
+		      int highestFuelTemp = 0;
+		      while (myReader.hasNextInt()) {
+				highestFuelTemp  = myReader.nextInt();
+		      }
+		      
+		      highestFuel = Math.max(highestFuel, highestFuelTemp );
+		      
+		      myReader.close();
+		} catch (FileNotFoundException e) {
+		      e.printStackTrace();
+		}
+		
+		// write highest score to file
+		try {
+		      FileWriter myWriter = new FileWriter("src/res/.txt");
+		      myWriter.write(highestFuel + "/res/highestFuel.txt");
 		      myWriter.close();
 		} catch (IOException e) {
 	      e.printStackTrace();
@@ -77,6 +124,10 @@ public class Score {
 	
 	public int getHighestScore() {
 		return highestScore;
+	}
+
+	public int getHighestFuel() {
+		return highestFuel;
 	}
 	
 

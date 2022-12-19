@@ -42,7 +42,7 @@ public class MenuState extends GameState {
 	@Override
 	public void draw(Graphics g) {
 		
-		g.drawImage(frontScreen, 0, 0, null);
+		g.drawImage(frontScreen, 0, 0, null);  
 		g.setColor(Color.white);
 		g.setFont(fontInfo);
 		fontInfo = new Font(null, Font.PLAIN, 50);

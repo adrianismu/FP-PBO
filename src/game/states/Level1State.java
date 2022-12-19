@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import game.Background;
 import game.entities.PlayerCar;
 import game.entities.Score;
+import game.entities.Fuel;
 import game.entities.Obstacle1;
 import game.entities.Obstacle2;
 import game.entities.Obstacle3;
@@ -30,11 +31,13 @@ public class Level1State extends GameState {
 	Obstacle2 obstacletwo;
 	Obstacle3 obstaclethree;
 	Obstacle4 obstaclefour;
+	Fuel fuel;
 	
 	GameSound carSound1;
 	GameSound carSound2;
 	GameSound carSound3;
 	GameSound carSound4;
+	GameSound fuelSound;
 	GameSound crash;
 
 	
@@ -47,8 +50,19 @@ public class Level1State extends GameState {
 		obstaclethree = new Obstacle3();
 		obstaclefour = new Obstacle4();
 		
+		
 		background = new Background();
-		score = new Score();	
+		score = new Score();
+		fuel = new Fuel();
+		
+		try {
+			fuelSound = new GameSound("/res/get-coin1.wav");
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | IOException
+				| javax.sound.sampled.LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 
 		try {
@@ -111,27 +125,39 @@ public class Level1State extends GameState {
 		
 		if(player.getY() >= background.getDownRoadBound())
 		 	player.setY( background.getDownRoadBound() );
-		
 			
+
+		if(fuel.isVisible()==true)
+			 score.deltaFuel=1;
+		 else
+
+		score.deltaFuel=0;
+		score.finalFuel = score.currentFuel;
+		
 		score.currentScore += score.deltaScore;
 		score.checkScore = score.currentScore;
+
+
 		if(score.checkScore>0){
-			
+
 			background.setSpeed(2);
 			obstacleone.setSpeed(2);
 			obstacletwo.setSpeed(2);
 			obstaclethree.setSpeed(2);
-			
+
+			fuel.update(3);
+
 		}
 
 
 		if(score.checkScore>3500){
+
 			background.setSpeed(3);
 			obstacleone.setSpeed(3+2);
 			obstacletwo.setSpeed(3+2);
 			obstaclethree.setSpeed(3+2);
-			
 
+			
 		}
 		
 		if(score.checkScore>6000){
@@ -141,16 +167,18 @@ public class Level1State extends GameState {
 			obstacletwo.setSpeed(5 + 5 );
 			obstaclethree.setSpeed(5 + 5);
 			obstaclefour.setSpeed(5 + 10);
-	
+			
+
 		}
 		
-		if(score.checkScore>15000){
+		if(score.checkScore>11000){
 			background.setSpeed(6);
 			obstacleone.setSpeed(6 + 10);
 			obstacletwo.setSpeed(6 + 10);
 			obstaclethree.setSpeed(6 + 10);
 			obstaclefour.setSpeed(5 + 40);
 			score.deltaScore=25;
+			
 		}
 		
 	}
@@ -168,7 +196,7 @@ public class Level1State extends GameState {
 			g.drawImage(background.getBackRoad(),0, background.getRoadY(),null);
 			g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
 			}
-			if(score.currentScore >15000){
+			if(score.currentScore >11000){
 			g.drawImage(background.getBackRoad3(),0, background.getRoadY(),null);
 			g.drawImage(background.getRoad(), background.getRoadX(), background.getRoadY(), null);
 			}
@@ -178,12 +206,18 @@ public class Level1State extends GameState {
 		g.setFont(f);
 		g.drawString("SCORE", 30, 500);
 		g.drawString( ""+ score.currentScore, 30, 520);
+
+		g.drawString("FUEL", 30, 600);
+		g.drawString( ""+ score.currentFuel, 30, 620);
+
 		g.drawImage(obstacleone.getImage(), (int)obstacleone.getX(), (int)obstacleone.getY(), null);
 		g.drawImage(obstacletwo.getImage(), (int)obstacletwo.getX(), (int)obstacletwo.getY(), null);
 		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);
 		g.drawImage(obstaclethree.getImage(), (int)obstaclethree.getX(), (int)obstaclethree.getY(), null);
 		g.drawImage(obstaclefour.getImage(), (int)obstaclefour.getX(), (int)obstaclefour.getY(), null);
+		
 		g.drawImage(player.getImage(), (int) player.getX(),(int) player.getY(), null);
+		g.drawImage(fuel.getImage(),fuel.getX(), fuel.getY(), null);
 
 
 		score.finalScore = score.currentScore;
@@ -200,6 +234,7 @@ public class Level1State extends GameState {
 		Rectangle op2 = obstacletwo.getRectangle();
 		Rectangle op3 = obstaclethree.getRectangle();
 		Rectangle op4 = obstaclefour.getRectangle();
+		Rectangle fu = fuel.getRectangle();
 		
 		
 		Rectangle p = player.getRectangle();
@@ -218,6 +253,18 @@ public class Level1State extends GameState {
 			gsm.setState(GameStateManager.STOPSTATE, score);
 			
 		}
+
+		if(fu.intersects(p)){
+			try {
+				new GameSound("/res/get-coin1.wav").play();
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			fuel.generateRandomPosition();
+			score.currentFuel = score.currentFuel + score.deltaFuel;
+		}
+
 		if(score.checkScore>6000){
 			carSound3.pause();
 			carSound4.play();
@@ -229,7 +276,6 @@ public class Level1State extends GameState {
 			carSound2.pause();
 			carSound3.play();
 			carSound3.getCLip().loop(Clip.LOOP_CONTINUOUSLY);
-	
 		}
 
 		if(score.checkScore>1800){

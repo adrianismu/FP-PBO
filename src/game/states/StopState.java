@@ -58,6 +58,7 @@ public class StopState extends GameState {
 		g.setFont(f);
 		g.setColor(Color.WHITE);
 		g.drawString("SCORE: " + score.finalScore, 100, 300);
+		g.drawString("FUEL : " + score.finalFuel, 100, 350);
 
 		g.setFont(new Font("HelveticaNeue", Font.PLAIN, 25));
 		g.setColor(Color.WHITE);

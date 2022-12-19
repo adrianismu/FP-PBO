@@ -10,18 +10,15 @@ import game.states.GameStateManager;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
-	// dimensions
 	public static final int WIDTH = 720;
 	public static final int HEIGHT = 690;
 	public static final int SCALE = 1;
-	
-	// game thread
+
 	private Thread thread;
 	private boolean running;
 	private int FPS = 60;
 	private long targetTime = 1000 / FPS;
 	
-	// game state manager
 	private GameStateManager gsm;
 	
 	public GamePanel()
@@ -67,8 +64,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 			
 			elapsed = System.nanoTime() - start;
 			
-			wait = targetTime - elapsed / 1000000; // in milliseconds
-			if(wait < 0) wait = 5; // pakai elapse, wait karena takut elapsed melebihi targetTime
+			wait = targetTime - elapsed / 1000000; 
+			if(wait < 0) wait = 5; 
 			
 			try {
 				Thread.sleep(wait);
