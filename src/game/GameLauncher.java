@@ -6,12 +6,23 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 
 public class GameLauncher extends JFrame {
 	private  BufferedImage img1;
 	public GameLauncher()
 	{
+		try{
+			//logo app
+			URL icon=this.getClass().getResource("/res/menu.png");
+			img1=ImageIO.read(icon);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 
 		JFrame f=new JFrame("Vehicle RUSH");
 		f.setSize(720, 690);
@@ -37,6 +48,8 @@ public class GameLauncher extends JFrame {
 					f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			}
 				});
+
+
 	}
 	
 	public static void main(String args[])
