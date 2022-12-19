@@ -5,9 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JOptionPane;
-
 import game.GamePanel;
 import game.tools.ImageLoader;
 
@@ -16,9 +14,7 @@ public class MenuState extends GameState {
 	private	BufferedImage frontScreen;
 	
 	private int currentChoice = 0;
-	// private String[] options = {
-	// 	"Start",
-	// 	"Quit"
+
 	
 	
 	private String info = "PRESS ENTER TO PLAY";
@@ -36,7 +32,6 @@ public class MenuState extends GameState {
 
 	@Override
 	public void update() {
-		
 	}
 
 	@Override
@@ -47,16 +42,12 @@ public class MenuState extends GameState {
 		g.setFont(fontInfo);
 		fontInfo = new Font(null, Font.PLAIN, 50);
 		g.drawString(info, GamePanel.WIDTH / 2 -300, GamePanel.HEIGHT/2 + 150 );
-		
 
 	}
 	
 	private void select() {
 		if(currentChoice == 0) {
 			gsm.setState(GameStateManager.LEVEL1STATE, score);
-		}
-		if(currentChoice == 1) {
-			executeExit();
 		}
 	}
 	

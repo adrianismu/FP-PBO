@@ -10,8 +10,7 @@ private static String pathImage = "/res/fireball.png";
 		
 	}
 	
-	public void move()
-	{
+	public void move(){
 		y+=dy;
 		if(y >= 1450)
 			generateRandomPosition4();

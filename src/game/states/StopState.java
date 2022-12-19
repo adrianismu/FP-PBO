@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-
 import game.Background;
 import game.GamePanel;
 import game.entities.Score;
@@ -12,7 +11,6 @@ import game.entities.Score;
 public class StopState extends GameState {
 
 	private Score score;
-
 	private Background background;
 
 	Font highestScoreFont, f, titleFont;
@@ -20,9 +18,7 @@ public class StopState extends GameState {
 	public StopState(GameStateManager gsm, Score score) {
 
 		this.gsm = gsm;
-
 		this.score = score;
-
 		background = new Background();
 
 		init();

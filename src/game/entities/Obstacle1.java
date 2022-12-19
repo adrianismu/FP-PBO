@@ -10,13 +10,11 @@ private static String pathImage = "/res/obstacle1.png";
 		
 	}
 	
-	public void move()
-	{
+	public void move() {
 		y+=dy;
 		if(y >= 1800)
 			generateRandomPosition();
-		
-			
+				
 	}
 	
 }

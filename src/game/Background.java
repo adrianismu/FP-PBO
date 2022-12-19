@@ -85,19 +85,19 @@ public class Background {
 		update();
 	}
 
-	public static int getLeftRoadBound() {
+	public int getLeftRoadBound() {
 		return LEFT_ROAD_BOUND;
 	}
 
-	public static int getRightRoadBound() {
+	public int getRightRoadBound() {
 		return RIGHT_ROAD_BOUND;
 	}
 
-	public static int getTopRoadBound() {
+	public int getTopRoadBound() {
 		return TOP_ROAD_BOUND;
 	}
 
-	public static int getDownRoadBound() {
+	public int getDownRoadBound() {
 		return DOWN_ROAD_BOUND;
 	}
 
